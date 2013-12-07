@@ -1,7 +1,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-<script type="text/javascript" src="jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css.css" />
 <title>MI-VMW - Ultimate music recognizer | Jan Dufek and Jan Bouchner</title>
 </head>
 <body>

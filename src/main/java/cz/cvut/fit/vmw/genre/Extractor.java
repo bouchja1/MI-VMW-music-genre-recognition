@@ -53,7 +53,7 @@ public class Extractor {
 		try {
 
 			Object[] lists = (Object[]) XMLDocumentParser.parseXMLDocument(
-					"features.xml", "feature_list");
+					"/home/johny/projects/skola/vmw/MI-VMW-music-genre-recognition/features.xml", "feature_list");
 			LinkedList<FeatureExtractor> extractors = (LinkedList<FeatureExtractor>) lists[0];
 			LinkedList<Boolean> def = (LinkedList<Boolean>) lists[1];
 

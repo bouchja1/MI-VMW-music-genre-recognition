@@ -1,6 +1,8 @@
 package cz.cvut.fit.vmw.genre.ui.controller;
 
+import cz.cvut.fit.vmw.genre.GenreAnalyzator;
 import cz.cvut.fit.vmw.genre.dial.GenreEnum;
+import cz.cvut.fit.vmw.genre.exception.GenreException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,7 +46,7 @@ public class UploadController {
         fileValidator.validate(uploadedFile, result);
 
         String fileName = file.getOriginalFilename();
-        Map<GenreEnum, Double> genreMap = new HashMap<>();
+        
 
         if (result.hasErrors()) {
             return new ModelAndView("uploadForm");
@@ -53,7 +55,7 @@ public class UploadController {
         try {
             inputStream = file.getInputStream();
 
-            File newFile = new File("/home/jan/temp/" + fileName);
+            File newFile = new File("/home/johny/projects/skola/vmw/temp/" + fileName);
             if (!newFile.exists()) {
                 newFile.createNewFile();
             }
@@ -61,26 +63,31 @@ public class UploadController {
             int read = 0;
             byte[] bytes = new byte[1024];
 
-            // DUFJA
-            // tady si nekde pak posles ten File newFile svemu vstupu a prijde mi vyhodnoceni
-
-            // bouchja1 simulace HashMap            
-            genreMap.put(GenreEnum.SKA, new Double(0.5));
-            genreMap.put(GenreEnum.ROCK, new Double(0.4));
-            genreMap.put(GenreEnum.CHODSKA, new Double(0.1));
-
+            
             while ((read = inputStream.read(bytes)) != -1) {
                 outputStream.write(bytes, 0, read);
             }
+            
+            outputStream.close();
+            newFile = new File("/home/johny/projects/skola/vmw/temp/" + fileName);
+            
+            GenreAnalyzator analyzator = new GenreAnalyzator();
+            Map<GenreEnum, Double> genreMap = analyzator.analyze(newFile);
+            
+            Map<String, Object> model = new HashMap<>();
+            model.put("message", fileName);
+            model.put("genres", genreMap); 
+            
+            return new ModelAndView("showFile", "model", model);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch(GenreException e){
+            e.printStackTrace();
         }
 
-        Map<String, Object> model = new HashMap<>();
-        model.put("message", fileName);
-        model.put("genres", genreMap);           
-
-        return new ModelAndView("showFile", "model", model);
+              
+        return new ModelAndView("uploadForm");
+        
     }
 }

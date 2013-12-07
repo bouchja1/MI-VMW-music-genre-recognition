@@ -14,7 +14,10 @@ import cz.cvut.fit.vmw.genre.dial.GenreEnum;
 import cz.cvut.fit.vmw.genre.exception.GenreException;
 import jAudioFeatureExtractor.DataTypes.RecordingInfo;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *
@@ -22,14 +25,14 @@ import java.util.List;
  */
 public class GenreAnalyzator {
     
-    private static final int N = 3;
+    private static final int N = 5;
     
-    public GenreEnum analyze (File file) throws GenreException{
+    public Map<GenreEnum, Double> analyze (File file) throws GenreException{
         
         FeatureExtractor fileExtractor = getFileExtractor(file);
         
-        double bestResult = -1;
-        GenreEnum bestGenre = null;
+        Map<GenreEnum, Double> result = new HashMap<>();
+        double totalCoef = 0;
         
         for (GenreEnum genre : GenreEnum.values()) {
             
@@ -55,14 +58,17 @@ public class GenreAnalyzator {
             
             System.out.println(genre.getGenreId() + " - " + count);
             
-            if (bestResult < (double)count/songsCount){
-               bestGenre = genre;
-               bestResult = (double)count/songsCount;
-            }
+            result.put(genre, (double)count/songsCount);
+            
+            totalCoef += (double)count/songsCount;
             
         }
         
-        return bestGenre;
+        for (Entry<GenreEnum, Double> entry: result.entrySet()) {
+            entry.setValue(entry.getValue()/totalCoef);
+        }
+        
+        return result;
         
     }
     
@@ -101,7 +107,7 @@ public class GenreAnalyzator {
         FeaturesDescriptorMiner featuresMiner = new FeaturesDescriptorMiner(
                             file);
             try {
-                    RecordingInfo recordingInfo = featuresMiner.addRecording();
+                   // RecordingInfo recordingInfo = featuresMiner.addRecording();
 
                     Song song = new Song(file.getName());
                     Extractor extractor = new Extractor(file, song);

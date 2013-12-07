@@ -22,8 +22,8 @@ public class Test {
             File file = new File("/home/johny/Stažené/vmw/jazz/Glenn Miller/1983 - In the mood/Stardust.mp3");
             boolean fileExists = file.exists();
            // genreAnalyzator.analyze(file, GenreEnum.SKA);
-            GenreEnum result = genreAnalyzator.analyze(file);
-            System.out.println(result.getGenreId());
+             genreAnalyzator.analyze(file);
+           // System.out.println(result.getGenreId());
         } catch (GenreException ex) {
             ex.printStackTrace();
         }
