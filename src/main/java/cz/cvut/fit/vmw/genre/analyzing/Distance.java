@@ -2,7 +2,7 @@
  * Author - Jan Dufek, dufeja@gmail.com
  * Copying and using only with permission of the author.
  */
-package cz.cvut.fit.vmw.genre;
+package cz.cvut.fit.vmw.genre.analyzing;
 
 import cz.cvut.fit.vmw.genre.business.feature.FeatureExtractor;
 import cz.cvut.fit.vmw.genre.crate.Feature;
@@ -16,7 +16,7 @@ public class Distance {
     
     public static double getDistance(FeatureExtractor a, FeatureExtractor b){
         double sum = 0;
-        sum += euclidusDistance(a.getBeatSumStandardDeviation(), b.getBeatSumStandardDeviation()) / 188;
+        sum += euclidusDistance(a.getBeatSumStandardDeviation(), b.getBeatSumStandardDeviation()) / 170;
         sum += euclidusDistance(a.getSpectralCentroidDeviation(), b.getSpectralCentroidDeviation()) / 17;
         sum += euclidusDistance(a.getmFCCDerivativeOfSpectralCentroid(), b.getmFCCDerivativeOfSpectralCentroid()) / 18;
         sum += euclidusDistance(a.getmFCCRunningMeanOfSpectralCentroid(), b.getmFCCRunningMeanOfSpectralCentroid()) / 11;

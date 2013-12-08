@@ -4,6 +4,15 @@
  */
 package cz.cvut.fit.vmw.genre.dial;
 
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.CHODSKA;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.DEATH_METAL;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.DECHOVKA;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.HIPHOP;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.JAZZ;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.ROCK;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.SKA;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.TECHNO;
+import static cz.cvut.fit.vmw.genre.dial.GenreEnum.VAZNA_HUDBA;
 import cz.cvut.fit.vmw.genre.exception.GenreException;
 import java.util.ArrayList;
 
@@ -19,14 +28,15 @@ public enum GenreEnum {
     TECHNO (5, "Techno"),
     VAZNA_HUDBA(6, "Vážná hudba"),
     ROCK (7, "Rock"),
-    CHODSKA (8, "Chodská");
+    CHODSKA (8, "Chodská"),
+    HIPHOP(9, "Hip Hop");
     
     private Integer genreId;
     private String name;
     
 	
     public GenreEnum[] getUsedGenres(){
-        return new GenreEnum[]{DECHOVKA, DEATH_METAL, JAZZ, SKA, TECHNO, VAZNA_HUDBA};
+        return new GenreEnum[]{DECHOVKA, DEATH_METAL, JAZZ, SKA, HIPHOP};
     }
     
     private GenreEnum(Integer genreId, String name) {
@@ -44,6 +54,7 @@ public enum GenreEnum {
             case 6: return VAZNA_HUDBA;
             case 7: return ROCK;
             case 8: return CHODSKA;
+            case 9: return HIPHOP;
         }
         throw new GenreException("Genre ID " + genreId + " was not found");
     }

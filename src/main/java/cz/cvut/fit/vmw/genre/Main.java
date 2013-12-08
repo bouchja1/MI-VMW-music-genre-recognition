@@ -1,5 +1,6 @@
 package cz.cvut.fit.vmw.genre;
 
+import cz.cvut.fit.vmw.genre.business.feature.Extractor;
 import java.io.File;
 
 import cz.cvut.fit.vmw.genre.business.FeaturesDescriptorMiner;

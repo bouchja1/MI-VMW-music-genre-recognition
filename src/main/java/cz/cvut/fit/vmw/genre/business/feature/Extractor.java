@@ -2,7 +2,7 @@
  * Author - Jan Dufek, dufeja@gmail.com
  * Copying and using only with permission of the author.
  */
-package cz.cvut.fit.vmw.genre;
+package cz.cvut.fit.vmw.genre.business.feature;
 
 import jAudioFeatureExtractor.ACE.DataTypes.FeatureDefinition;
 import jAudioFeatureExtractor.ACE.XMLParsers.XMLDocumentParser;

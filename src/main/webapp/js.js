@@ -16,8 +16,19 @@ $(function () {
         var data = [];
         $('table.data tr').each(function(i, e){
             var el = $(e);
-            data.push([el.find('.gName').text(), parseFloat(el.find('.val').text())]);
+            data.push({name: el.find('.gName').text(), y: parseFloat(el.find('.val').text())});
         });
+        
+        var biggest = 0;
+        var biggestIndex;
+        for (var i in data){
+            var d = data[i];
+            if (biggest < d.y){
+                biggest = d.y;
+                biggestIndex = i;
+            }
+        }
+        data[biggestIndex].sliced = true;
 		// Build the chart
         $('#graph').highcharts({
             chart: {

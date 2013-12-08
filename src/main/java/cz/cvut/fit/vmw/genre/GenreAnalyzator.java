@@ -4,6 +4,8 @@
  */
 package cz.cvut.fit.vmw.genre;
 
+import cz.cvut.fit.vmw.genre.analyzing.Distance;
+import cz.cvut.fit.vmw.genre.business.feature.Extractor;
 import cz.cvut.fit.vmw.genre.business.FeaturesDescriptorMiner;
 import cz.cvut.fit.vmw.genre.business.feature.DbFeatureExtractor;
 import cz.cvut.fit.vmw.genre.business.feature.FeatureExtractor;
@@ -12,7 +14,6 @@ import cz.cvut.fit.vmw.genre.db.SongDAO;
 import cz.cvut.fit.vmw.genre.db.SongDAOImpl;
 import cz.cvut.fit.vmw.genre.dial.GenreEnum;
 import cz.cvut.fit.vmw.genre.exception.GenreException;
-import jAudioFeatureExtractor.DataTypes.RecordingInfo;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;

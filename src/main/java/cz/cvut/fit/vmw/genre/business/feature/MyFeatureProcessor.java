@@ -1,4 +1,4 @@
-package cz.cvut.fit.vmw.genre;
+package cz.cvut.fit.vmw.genre.business.feature;
 
 import java.io.DataOutputStream;
 import java.io.File;
